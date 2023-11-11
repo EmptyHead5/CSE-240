@@ -8,12 +8,17 @@ cons 函数在Scheme语言里的作用：
 注意：需要明确重视和注意cons函数的第一个参数的灵活性！！！
 
 以下就是包含 cons 函数的例子
+
 以下是包含 for-each函数的例子
+（代码所提供的 for-each接受了guess-list 变量，并且使用lambda函数定义了一个方法"entry",这个方法具体接受结果如下：
+因为接受的guess-list变量是包含过的list的一个list'(('jack 3) ('jan 2) ('tom 5)) 
+for-each函数顾名思义，会调用第一个元素也就是list中的所包含的第一个元素'(jack 3) 之后根据for-each内的步骤进行对每一个元素的操作。
+
 以下是包含 cadr 用法的例子
-cadr与cdr 和 car不同
+（cadr与cdr 和 car不同
 car 为返回列表的第一个元素
 cdr为返回列表的除去第一个元素以外的元素
-cadr 则是car 和 cdr的组合，它先对列表使用cdr 之后对其返回的结果使用car
+cadr 则是car 和 cdr的组合，它先对列表使用cdr 之后对其返回的结果使用car）
 
 
 (#%require (lib "27.ss" "srfi"))
