@@ -6,3 +6,68 @@ cons 函数在Scheme语言里的作用：
 (cons 1 '(2 3 4)) ; 结果是 (1 2 3 4)
 
 注意：需要明确重视和注意cons函数的第一个参数的灵活性！！！
+
+以下就是包含 cons 函数的例子
+以下是包含 for-each函数的例子
+以下是包含 cadr 用法的例子
+cadr与cdr 和 car不同
+car 为返回列表的第一个元素
+cdr为返回列表的除去第一个元素以外的元素
+cadr 则是car 和 cdr的组合，它先对列表使用cdr 之后对其返回的结果使用car
+
+
+(#%require (lib "27.ss" "srfi"))
+
+(define (generate-new-correct) (+ (random-integer 100) 1))
+
+(define (guessing-game correct count guess-list)
+  (display "Guess a number from 1 to 100: ")
+  (let ((guess (read)))
+    (cond
+      ((eq? guess 'quit)
+       guess-list)
+      ((eq? guess 'invalid)
+       (begin
+         (display "Invalid input. Enter a number or 'q' to quit: ")
+         (guessing-game correct count guess-list)))
+      ((> guess correct)
+       (begin
+         (display "Higher... Enter another guess: ")
+         (guessing-game correct (+ count 1) guess-list)))
+      ((< guess correct)
+       (begin
+         (display "Lower... Enter another guess: ")
+         (guessing-game correct (+ count 1) guess-list)))
+      (else
+       (begin
+         (display "Correct! You guessed it in ")
+         (display (+ count 1))
+         (display " guesses... Please enter your name: ")
+         (let ((name (read)))
+           (display "Good game, ")
+           (display name)
+           (newline)
+          (cons (list name (+ count 1)) guess-list)))))))
+
+(define (print-guess-list guess-list)
+  (if (null? guess-list)
+      (display "No games played.")
+      (for-each (lambda (entry)
+                  (display "\n------------------------------\n")
+                  (display (car entry))
+                  (display " ")
+                  (display (cadr entry)))
+                guess-list)))
+
+(define (start-game)
+  (let loop ((guess-list '()))
+    (display "\nEnter 'q' to quit or any other key to continue: ")
+    (let ((input (read)))
+      (if (eq? input 'q)
+          (begin
+            (display "\n")
+            (print-guess-list guess-list))
+          (loop (guessing-game (generate-new-correct) 0 guess-list))))))
+
+     
+(start-game)
