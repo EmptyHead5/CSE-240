@@ -2,7 +2,7 @@ prolog language是一个基于外部接口的语言，通常通过创建 (.pl) �
 macBook文件路径快捷键（option+command+c -> command+v)
 
 EG:
-  外部文件：prog1.pl（通过Vs studio编辑）：  
+  外部文件：prog1.pl（通过Vs studio编辑）：                                 
   dog(rover).
   dog(fido).
   cat(felix).
@@ -19,3 +19,6 @@ EG:
   dog(X).
   X = rover ;
   X = fido. ------（调用接口内数据，进行遍历）
+-------------------------------------------------
+        内部方法调用
+listing(x). -----调用符合X的内部数据。
