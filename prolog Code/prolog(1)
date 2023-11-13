@@ -1,0 +1,2 @@
+prolog language是一个基于外部接口的语言，通常通过创建 (.pl) 文件，通过外部修改pl文件后，在prolog编译器内进行编译。
+macBook文件路径快捷键（option+command+c -> command+v)
