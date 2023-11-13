@@ -1,2 +1,21 @@
 prolog language是一个基于外部接口的语言，通常通过创建 (.pl) 文件，通过外部修改pl文件后，在prolog编译器内进行编译。
 macBook文件路径快捷键（option+command+c -> command+v)
+
+EG:
+  外部文件：prog1.pl（通过Vs studio编辑）：  
+  dog(rover).
+  dog(fido).
+  cat(felix).
+  cat(mittens).
+  cat(tom).
+  cat(phidippides).
+  animal(X) :- dog(X).
+内部命令，通过prolog 编译器实现：
+  consult('/Users/zenanchang/Desktop/code prog/prog1.pl').
+   true.-----（载入内部接口，用于后期命令使用）
+  cat(X).
+  X = felix ;
+  X = mittens .------（调用接口内数据，进行遍历）
+  dog(X).
+  X = rover ;
+  X = fido. ------（调用接口内数据，进行遍历）
