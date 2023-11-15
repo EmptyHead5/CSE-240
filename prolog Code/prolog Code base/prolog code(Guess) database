@@ -1,0 +1,20 @@
+guess(X) :- 
+    write('Try to guess the number: '),
+    read(Guess),
+    write(Guess),
+    (   Guess =:= X
+    //prolog 语言中并不能直接使用=，那是对变量的赋值，也不能使用== 因为不符合语法。
+    ->  write('You guessed it!')
+    ;   Guess < X
+    ->  write('Too low!'), guess(X)
+    ;   Guess > X
+    ->  write('Too high!'), guess(X)
+    ).
+
+guess :-    
+    X is random(10),
+    //random为 prolog语言的内置方法。
+    guess(X).
+
+    以上代码提供了prolog语言内，标准的if-then-else 的标准形式。
+    应该注意添加"->" 和 “；”符号来确保prolog 判断语句的正确语法格式运行。
