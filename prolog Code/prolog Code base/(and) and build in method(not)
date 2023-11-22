@@ -1,0 +1,16 @@
+female(elaina).
+female(jane).
+male(conrad).
+male(joe).
+married(luke).
+married(mike).
+father_of(andrew, conrad).
+father_of(luke, mike).
+mother_of(elaina, sarah).
+
+is_male(X):- father_of(X, _); male(X).
+is_female(X):-mother_of(X,_); female(X).
+bachelor(X):- is_male(X), not(married(X)).
+
+%";" 表示两者有一为真， 可以理解为 or
+%not 为内置 prolog 语言方法， 可以直接调用
