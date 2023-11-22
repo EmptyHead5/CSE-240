@@ -1,0 +1,11 @@
+warm_blooded(cat).
+warm_blooded(dog).
+warm_blooded(chicken).
+four_legs(cat).
+four_legs(dog).
+two_legs(chicken).
+
+mammal(X):- warm_blooded(X), four_legs(X), !.
+
+
+%！作用为遇到第一个匹配选项则停止选择。
