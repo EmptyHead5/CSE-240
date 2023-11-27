@@ -1,0 +1,29 @@
+%split  function
+split([], [], []).
+    split([X], [X], []).
+    split([X, Y|Rest], [X|L1], [Y|L2]) :-
+    split(Rest, L1, L2).
+%merge function
+merge([],L,L).
+merge(L,[],L).
+merge([X|L1],[Y|L2],[X|L3]):-
+    X=<Y,
+    merge(L1,[Y|L2],L3).
+merge([X|L1],[Y|L2],[Y|L3]):-
+    X>Y,
+    merge([X|L1],L2,L3).
+%mergeSort function
+mergeSort([],[]).
+mergeSort([X],[X]).
+mergeSort(L1,L2):-
+    split(L1,P1,P2),
+    mergeSort(P1,S1),
+    mergeSort(P2,S2),
+    merge(S1,S2,L2).
+%在递归算法中，每个递归调用都会等待它的子调用完成并返回结果后，才会继续执行后续的步骤。
+%一旦达到递归的基本情况，算法开始逐步构建最终的结果，从最底层的递归调用回溯到最初的调用。
+
+%在代码的recursion环节中，当recursion结束，还会有一个回溯 backtracking的过程
+%可以理解为，在每一次调运recursion的过程中，其实方法并没有完全处理出recursion的结果，只有达到recursion条件的最终结束条件
+%也就意味着recursion环节完成了，已经成功计算出值，之后就会进行backtracking的过程，一步步从后往前的将值返回。
+
