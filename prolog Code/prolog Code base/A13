@@ -3,6 +3,11 @@ split([], [], []).
     split([X], [X], []).
     split([X, Y|Rest], [X|L1], [Y|L2]) :-
     split(Rest, L1, L2).
+%当传入列表为空，则都为空
+%当传入列表为单个元素，则返回元素以及一个空列表
+%当传入列表为多个元素时
+    :将传入列表的第一个，第二个元素分割出来，分别分配给两个空列表，将分割后的列表继续按照此方法recursion分割。但列表满足前两个初始方法的时候
+    则返回列表
 %merge function
 merge([],L,L).
 merge(L,[],L).
@@ -12,6 +17,7 @@ merge([X|L1],[Y|L2],[X|L3]):-
 merge([X|L1],[Y|L2],[Y|L3]):-
     X>Y,
     merge([X|L1],L2,L3).
+
 %mergeSort function
 mergeSort([],[]).
 mergeSort([X],[X]).
