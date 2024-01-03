@@ -6,6 +6,8 @@
   
 virtual function在实现时候，实现函数多态性，并且产生动态绑定机制，如果去掉关键字，则会失去这种特点，进而采用静态绑定，在这种情况下基类指针
 始终调用基类中的函数。
+
+https://www.bilibili.com/video/BV1Ts4y1u7rA/?spm_id_from=333.337.search-card.all.click&vd_source=07ad793678d0663c016c43b1de8525e9
 #include <iostream>
 
 // 基类
