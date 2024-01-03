@@ -1,0 +1,52 @@
+在以下示例中 可以很清楚的表示virtual function的用法， 通过在基类内添加virtual关键字，让编译器识别为virual function，则可以在以下的多个
+派生类当中，调用virtual function去重写基类中的virtual function也就是 draw 方法（函数）
+
+如果去掉virtual关键字，则会导致在main方法（函数）中，调用的两个派生类 shape1->draw(); shape2->draw();  编译器无法识别virtual function
+则导致编译器多次调用calss Shape 内的函数生成两次"Drawing a shape" 
+  
+virtual function在实现时候，实现函数多态性，并且产生动态绑定机制，如果去掉关键字，则会失去这种特点，进而采用静态绑定，在这种情况下基类指针
+始终调用基类中的函数。
+#include <iostream>
+
+// 基类
+class Shape {
+public:
+    // 没有使用 virtual 关键字
+    void draw() const {
+        std::cout << "Drawing a shape" << std::endl;
+    }
+};
+
+// 派生类1
+class Circle : public Shape {
+public:
+    // 没有使用 override 关键字
+    void draw() const {
+        std::cout << "Drawing a circle" << std::endl;
+    }
+};
+
+// 派生类2
+class Square : public Shape {
+public:
+    // 没有使用 override 关键字
+    void draw() const {
+        std::cout << "Drawing a square" << std::endl;
+    }
+};
+
+int main() {
+    // 创建基类指针
+    Shape* shape1 = new Circle();
+    Shape* shape2 = new Square();
+
+    // 不再是虚拟函数，只会调用基类中的函数
+    shape1->draw();  // 调用基类 Shape 的 draw 函数
+    shape2->draw();  // 调用基类 Shape 的 draw 函数
+
+    // 释放内存
+    delete shape1;
+    delete shape2;
+
+    return 0;
+}
